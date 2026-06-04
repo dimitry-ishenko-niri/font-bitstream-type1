@@ -1,0 +1,5 @@
+font-bitstream-type1 (1.0.4-1) UNRELEASED; urgency=medium
+
+  * Initial release. (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Dimitry Ishenko <dimitry.ishenko@gmail.com>  Thu, 04 Jun 2026 00:32:54 -0400

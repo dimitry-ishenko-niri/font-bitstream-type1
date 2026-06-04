@@ -1,0 +1,23 @@
+Source: font-bitstream-type1
+Section: fonts
+Maintainer: Dimitry Ishenko <dimitry.ishenko@gmail.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ fontforge-nox,
+Standards-Version: 4.7.4
+Vcs-Browser: https://github.com/cccp-linux/font-bitstream-type1
+Vcs-Git: https://github.com/cccp-linux/font-bitstream-type1.git
+
+Package: fonts-courier-10pitch
+Architecture: all
+Depends:
+ ${misc:Depends},
+Provides:
+ fonts-courier,
+Description: Courier 10 Pitch font fron xfonts-scalable
+
+Package: fonts-bitstream-charter
+Architecture: all
+Depends:
+ ${misc:Depends},
+Description: Bitstream Charter font fron xfonts-scalable

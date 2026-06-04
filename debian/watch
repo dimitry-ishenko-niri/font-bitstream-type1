@@ -1,0 +1,4 @@
+Version: 5
+Template: GitLab
+Dist: https://gitlab.freedesktop.org/xorg/font/bitstream-type1
+Version-Type: STABLE_VERSION
