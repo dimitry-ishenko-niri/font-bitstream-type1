@@ -1,3 +1,9 @@
+font-bitstream-type1 (1.0.4-3) unstable; urgency=medium
+
+  * Add Courier alias
+
+ -- Dimitry Ishenko <dimitry.ishenko@gmail.com>  Thu, 04 Jun 2026 16:17:31 -0400
+
 font-bitstream-type1 (1.0.4-2) unstable; urgency=medium
 
   * d/control: typo
