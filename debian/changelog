@@ -1,3 +1,9 @@
+font-bitstream-type1 (1.0.4-2) unstable; urgency=medium
+
+  * d/control: typo
+
+ -- Dimitry Ishenko <dimitry.ishenko@gmail.com>  Thu, 04 Jun 2026 14:08:06 -0400
+
 font-bitstream-type1 (1.0.4-1) unstable; urgency=medium
 
   [ Dimitry Ishenko ]
