@@ -14,10 +14,10 @@ Depends:
  ${misc:Depends},
 Provides:
  fonts-courier,
-Description: Courier 10 Pitch font fron xfonts-scalable
+Description: Courier 10 Pitch font from xfonts-scalable
 
 Package: fonts-bitstream-charter
 Architecture: all
 Depends:
  ${misc:Depends},
-Description: Bitstream Charter font fron xfonts-scalable
+Description: Bitstream Charter font from xfonts-scalable
