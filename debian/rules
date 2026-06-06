@@ -3,7 +3,8 @@ export DH_VERBOSE = 1
 
 CHARTER = BitstreamCharter-Regular.otf BitstreamCharter-Italic.otf BitstreamCharter-Bold.otf BitstreamCharter-BoldItalic.otf
 COURIER = Courier10Pitch-Regular.otf Courier10Pitch-Italic.otf Courier10Pitch-Bold.otf Courier10Pitch-BoldItalic.otf
-FONTDIR = usr/share/fonts/opentype/bitstream
+
+CONVERT = fontforge -lang=ff -c 'Open($$1); Generate($$2)'
 
 %:
 	dh $@
@@ -12,18 +13,16 @@ override_dh_autoreconf:
 
 override_dh_auto_build: $(COURIER) $(CHARTER)
 
-Courier10Pitch-Regular.otf:      c0419bt_.pfb; debian/convert $< $@
-Courier10Pitch-Italic.otf:       c0582bt_.pfb; debian/convert $< $@
-Courier10Pitch-Bold.otf:         c0583bt_.pfb; debian/convert $< $@
-Courier10Pitch-BoldItalic.otf:   c0611bt_.pfb; debian/convert $< $@
-BitstreamCharter-Bold.otf:       c0632bt_.pfb; debian/convert $< $@
-BitstreamCharter-BoldItalic.otf: c0633bt_.pfb; debian/convert $< $@
-BitstreamCharter-Regular.otf:    c0648bt_.pfb; debian/convert $< $@
-BitstreamCharter-Italic.otf:     c0649bt_.pfb; debian/convert $< $@
+Courier10Pitch-Regular.otf:      c0419bt_.pfb; $(CONVERT) $< $@
+Courier10Pitch-Italic.otf:       c0582bt_.pfb; $(CONVERT) $< $@
+Courier10Pitch-Bold.otf:         c0583bt_.pfb; $(CONVERT) $< $@
+Courier10Pitch-BoldItalic.otf:   c0611bt_.pfb; $(CONVERT) $< $@
+BitstreamCharter-Bold.otf:       c0632bt_.pfb; $(CONVERT) $< $@
+BitstreamCharter-BoldItalic.otf: c0633bt_.pfb; $(CONVERT) $< $@
+BitstreamCharter-Regular.otf:    c0648bt_.pfb; $(CONVERT) $< $@
+BitstreamCharter-Italic.otf:     c0649bt_.pfb; $(CONVERT) $< $@
 
 override_dh_auto_install:
-	install -d debian/tmp/$(FONTDIR)
-	install -m 644 $(COURIER) $(CHARTER) debian/tmp/$(FONTDIR)
 
 override_dh_auto_clean:
 	rm -f $(COURIER) $(CHARTER)
