@@ -1,2 +1,2 @@
-debian/46-courier-nerd-alias.conf etc/fonts/conf.avail/
+debian/41-courier-nerd-alias.conf etc/fonts/conf.avail/
 CourierNerd-*.otf usr/share/fonts/opentype/bitstream/
