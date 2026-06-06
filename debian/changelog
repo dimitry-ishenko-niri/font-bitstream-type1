@@ -1,8 +1,12 @@
-font-bitstream-type1 (1.0.4+~3.4.0-1) UNRELEASED; urgency=medium
+font-bitstream-type1 (1.0.4+~3.4.0-1) unstable; urgency=medium
 
-  * 
+  * d/rules: optimize
+  * Generate Courier Nerd fonts with Nerd Font glyphs
+  * Add 'patcher/' from commit 'ce6aae0e5cc472ab6252a5f6cc4f9b208f9cab99'
+  * Simplify package
+  * New upstream version 3.4.0
 
- -- Dimitry Ishenko <dimitry.ishenko@gmail.com>  Fri, 05 Jun 2026 21:51:46 -0400
+ -- Dimitry Ishenko <dimitry.ishenko@gmail.com>  Sat, 06 Jun 2026 16:53:53 -0400
 
 font-bitstream-type1 (1.0.4-3) unstable; urgency=medium
 
