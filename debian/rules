@@ -3,15 +3,18 @@ export DH_VERBOSE = 1
 
 CHARTER = BitstreamCharter-Regular.otf BitstreamCharter-Italic.otf BitstreamCharter-Bold.otf BitstreamCharter-BoldItalic.otf
 COURIER = Courier10Pitch-Regular.otf Courier10Pitch-Italic.otf Courier10Pitch-Bold.otf Courier10Pitch-BoldItalic.otf
+COURIER_NERD = CourierNerd-Regular.otf CourierNerd-Italic.otf CourierNerd-Bold.otf CourierNerd-BoldItalic.otf
 
 CONVERT = fontforge -lang=ff -c 'Open($$1); Generate($$2)'
+RENAME = fontforge -lang=ff -c 'Open($$1); SetFontNames($$3, $$4, $$5); Generate($$2)'
+NERD_PATCH = fontforge -script patcher/font-patcher --complete --makegroups -1 --out .
 
 %:
 	dh $@
 
 override_dh_autoreconf:
 
-override_dh_auto_build: $(COURIER) $(CHARTER)
+override_dh_auto_build: $(COURIER) $(CHARTER) $(COURIER_NERD)
 
 Courier10Pitch-Regular.otf:      c0419bt_.pfb; $(CONVERT) $< $@
 Courier10Pitch-Italic.otf:       c0582bt_.pfb; $(CONVERT) $< $@
@@ -22,7 +25,11 @@ BitstreamCharter-BoldItalic.otf: c0633bt_.pfb; $(CONVERT) $< $@
 BitstreamCharter-Regular.otf:    c0648bt_.pfb; $(CONVERT) $< $@
 BitstreamCharter-Italic.otf:     c0649bt_.pfb; $(CONVERT) $< $@
 
+CourierNerd-%.otf: Courier10Pitch-%.otf
+	$(RENAME) $< $@ "CourierNerd-$*" "Courier Nerd" "$$(echo 'Courier Nerd $*' | sed 's|BoldItalic|Bold Italic|; s| Regular||')"
+	$(NERD_PATCH) $@
+
 override_dh_auto_install:
 
 override_dh_auto_clean:
-	rm -f $(COURIER) $(CHARTER)
+	rm -f $(COURIER) $(CHARTER) $(COURIER_NERD)

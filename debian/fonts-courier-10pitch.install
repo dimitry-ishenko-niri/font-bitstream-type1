@@ -1,2 +1,2 @@
-debian/30-courier-alias.conf etc/fonts/conf.avail/
+debian/45-courier-10pitch-alias.conf etc/fonts/conf.avail/
 Courier10Pitch-*.otf usr/share/fonts/opentype/bitstream/

@@ -16,6 +16,14 @@ Provides:
  fonts-courier,
 Description: Courier 10 Pitch font from xfonts-scalable
 
+Package: fonts-courier-nerd
+Architecture: all
+Depends:
+ ${misc:Depends},
+Provides:
+ fonts-courier,
+Description: Courier 10 Pitch font with Nerd Font glyphs
+
 Package: fonts-bitstream-charter
 Architecture: all
 Depends:

@@ -1,4 +1,12 @@
 Version: 5
+Version-Schema: group
+
 Template: GitLab
 Dist: https://gitlab.freedesktop.org/xorg/font/bitstream-type1
 Version-Type: STABLE_VERSION
+
+Component: patcher
+Search-Mode: plain
+Source: https://api.github.com/repos/ryanoasis/nerd-fonts/releases?per_page=50
+Matching-Pattern: https://github.com/ryanoasis/nerd-fonts/releases/download/v?@ANY_VERSION@/FontPatcher\.zip
+Filename-Mangle: s|.*/v(\d[^/]*)/.*|nerd-fonts-patcher-$1.zip|
