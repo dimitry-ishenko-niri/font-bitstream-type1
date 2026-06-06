@@ -3,33 +3,32 @@ export DH_VERBOSE = 1
 
 CHARTER = BitstreamCharter-Regular.otf BitstreamCharter-Italic.otf BitstreamCharter-Bold.otf BitstreamCharter-BoldItalic.otf
 COURIER = Courier10Pitch-Regular.otf Courier10Pitch-Italic.otf Courier10Pitch-Bold.otf Courier10Pitch-BoldItalic.otf
-COURIER_NERD = CourierNerd-Regular.otf CourierNerd-Italic.otf CourierNerd-Bold.otf CourierNerd-BoldItalic.otf
+PATCHED = CourierNerd-Regular.otf CourierNerd-Italic.otf CourierNerd-Bold.otf CourierNerd-BoldItalic.otf
 
-CONVERT = fontforge -lang=ff -c 'Open($$1); Generate($$2)'
-RENAME = fontforge -lang=ff -c 'Open($$1); SetFontNames($$3, $$4, $$5); Generate($$2)'
-NERD_PATCH = fontforge -script patcher/font-patcher --complete --makegroups -1 --out .
+Courier10Pitch-Regular.otf      = c0419bt_.pfb
+Courier10Pitch-Italic.otf       = c0582bt_.pfb
+Courier10Pitch-Bold.otf         = c0583bt_.pfb
+Courier10Pitch-BoldItalic.otf   = c0611bt_.pfb
+BitstreamCharter-Bold.otf       = c0632bt_.pfb
+BitstreamCharter-BoldItalic.otf = c0633bt_.pfb
+BitstreamCharter-Regular.otf    = c0648bt_.pfb
+BitstreamCharter-Italic.otf     = c0649bt_.pfb
 
 %:
 	dh $@
 
-override_dh_autoreconf:
+override_dh_autoreconf override_dh_auto_configure override_dh_auto_install:
 
-override_dh_auto_build: $(COURIER) $(CHARTER) $(COURIER_NERD)
+override_dh_auto_build: $(CHARTER) $(COURIER) $(PATCHED)
 
-Courier10Pitch-Regular.otf:      c0419bt_.pfb; $(CONVERT) $< $@
-Courier10Pitch-Italic.otf:       c0582bt_.pfb; $(CONVERT) $< $@
-Courier10Pitch-Bold.otf:         c0583bt_.pfb; $(CONVERT) $< $@
-Courier10Pitch-BoldItalic.otf:   c0611bt_.pfb; $(CONVERT) $< $@
-BitstreamCharter-Bold.otf:       c0632bt_.pfb; $(CONVERT) $< $@
-BitstreamCharter-BoldItalic.otf: c0633bt_.pfb; $(CONVERT) $< $@
-BitstreamCharter-Regular.otf:    c0648bt_.pfb; $(CONVERT) $< $@
-BitstreamCharter-Italic.otf:     c0649bt_.pfb; $(CONVERT) $< $@
+.SECONDEXPANSION:
+$(COURIER) $(CHARTER): $$($$@)
+	fontforge -lang=ff -c 'Open($$1); Generate($$2)' $< $@
 
 CourierNerd-%.otf: Courier10Pitch-%.otf
-	$(RENAME) $< $@ "CourierNerd-$*" "Courier Nerd" "$$(echo 'Courier Nerd $*' | sed 's|BoldItalic|Bold Italic|; s| Regular||')"
-	$(NERD_PATCH) $@
-
-override_dh_auto_install:
+	fontforge -lang=ff -c 'Open($$1); SetFontNames($$3, $$4, $$5); Generate($$2)' \
+	    $< $@ "CourierNerd-$*" "Courier Nerd" "$$(echo 'Courier Nerd $*' | sed 's|BoldItalic|Bold Italic|; s| Regular||')"
+	fontforge -script patcher/font-patcher --complete --makegroups -1 --out . $@
 
 override_dh_auto_clean:
-	rm -f $(COURIER) $(CHARTER) $(COURIER_NERD)
+	rm -f $(CHARTER) $(COURIER) $(PATCHED)
