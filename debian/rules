@@ -28,7 +28,8 @@ $(COURIER) $(CHARTER): $$($$@)
 CourierNerd-%.otf: Courier10Pitch-%.otf
 	fontforge -lang=ff -c 'Open($$1); SetFontNames($$3, $$4, $$5); Generate($$2)' \
 	    $< $@ "CourierNerd-$*" "Courier Nerd" "$$(echo 'Courier Nerd $*' | sed 's|BoldItalic|Bold Italic|; s| Regular||')"
-	fontforge -lang=ff -c 'Open($$1); MergeFonts($$2); Generate($$1)' $@ "debian/Donor-$*.sfd"
+	fontforge -lang=ff -c 'Open($$1); SelectSingletons(0x5f, 0x7b, 0x7d); Clear(); MergeFonts($$2); Generate($$1)' \
+		$@ "debian/Donor-$*.sfd"
 	fontforge -script patcher/font-patcher --complete --makegroups -1 --out . $@
 
 override_dh_auto_clean:
